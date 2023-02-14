@@ -11,7 +11,7 @@ def emailValidator (value):
       raise ValidationError("mail inapproprié")
 
 
-# un modèle utilisateur personnalisé qui étend de la classe AbstractUser ( l'utilisateur par dèfaut de Django qui contien dèja quelques champs prédéfinis )
+# un modèle utilisateur personnalisé qui étend de la classe AbstractUser (l'utilisateur par dèfaut de Django qui contien dèja quelques champs prédéfinis )
 class Person(AbstractUser) :
     
   def __str__(self):
@@ -24,3 +24,5 @@ class Person(AbstractUser) :
   #email=models.EmailField(validators=[EmailValidator(whitelist=["esprit.tn"])])
 
   USERNAME_FIELD = 'username'
+
+

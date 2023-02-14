@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
-from Person.models import * 
+from Person.models import *
 import datetime
 
 # Create your models here.
@@ -38,7 +38,24 @@ class Event (models.Model):
     #association
     organizer = models.ForeignKey(Person , on_delete=models.PROTECT )
     
-    #participants=models.ManyToManyField(Person)
+    participants=models.ManyToManyField ( 
+        Person,
+        related_name="participantions",
+        through="Participation" 
+        )
+    
+    def __str__(self) -> str:
+        return self.title
     
     
+class Participation (models.Model):
+    person = models.ForeignKey(Person , on_delete=models.CASCADE)
+    event = models.ForeignKey(Event,on_delete=models.CASCADE)
+    datePart = models.DateField(auto_now=True)
+    
+    
+    class Meta:
+        unique_together = ('person','event')
+        verbose_name_plural='Participations'
+            
     
